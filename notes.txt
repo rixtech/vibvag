@@ -1,0 +1,13 @@
+vagrant up --provider=aws
+vagrant ssh 
+
+
+aws ec2 describe-instances | grep Public
+eg
+"PublicDnsName": "ec2-13-58-254-42.us-east-2.compute.amazonaws.com", 
+
+ssh -i ~/Downloads/vibrato.pem ubuntu@ec3-13-58-254-42.us-east-2.compute.amazonaws.com
+
+later:
+vagrant destroy
+
