@@ -83,6 +83,13 @@ Vagrant.configure("2") do |config|
   
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
-    apt-get install -y apache2
+    apt-get install -y apache2 php libapache2-mod-php php-mcrypt php-mysql debconf-utils
+    usermod -a -G www-data ubuntu
+    echo '<?php phpinfo(); ?>' > /var/www/html/phpinfo.php
+    chown -R ubuntu:www-data /var/www
+    debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password password mytemppw'
+    debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password_again password mytemppw'
+    apt-get install -y mysql-server
+    
   SHELL
 end
