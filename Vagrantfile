@@ -79,5 +79,10 @@ Vagrant.configure("2") do |config|
     override.vm.box = "dummy"
     override.ssh.username = "ubuntu"
     override.ssh.private_key_path = ENV['AWS_KEYPATH']
-  end  
+  end
+  
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -y apache2
+  SHELL
 end
