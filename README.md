@@ -18,13 +18,22 @@ How to:
 1. git clone this repo
    $ git clone https://github.com/rixtech/vibvag
    
-2. change into work directory
+2. set environment variables (or source from file)
+   $ source aws-credentials
+
+   * aws-credentials file looks like
+     export AWS_KEY='your_amazon_access_key'
+     export AWS_SECRET='your_amazon_secret_characters'
+     export AWS_KEYNAME='name_of_keypair'
+     export AWS_KEYPATH='pathto/somefile.pem'
+
+3. change into work directory
    $ cd vibvag
    
-3. provision VMs with Vagrant
+4. provision VMs with Vagrant
    $ vagrant up
    
-4. browse to the URL shown in the output following the vagrant up
+5. browse to the URL shown in the output following the vagrant up
 
    
 
