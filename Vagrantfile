@@ -68,28 +68,46 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
   
-  config.vm.provider :aws do |aws, override|
-    aws.access_key_id = ENV['AWS_KEY']
-    aws.secret_access_key = ENV['AWS_SECRET']
-    aws.keypair_name = ENV['AWS_KEYNAME']
-    aws.ami = "ami-8b92b4ee"
-    aws.region = "us-east-2"
-    aws.instance_type = "t2.micro"
+  config.vm.define "web" do |web|
+    web.vm.provider :aws do |aws, override|
+      aws.access_key_id = ENV['AWS_KEY']
+      aws.secret_access_key = ENV['AWS_SECRET']
+      aws.keypair_name = ENV['AWS_KEYNAME']
+      aws.ami = "ami-8b92b4ee"
+      aws.region = "us-east-2"
+      aws.instance_type = "t2.micro"
 
-    override.vm.box = "dummy"
-    override.ssh.username = "ubuntu"
-    override.ssh.private_key_path = ENV['AWS_KEYPATH']
-  end
+      override.vm.box = "dummy"
+      override.ssh.username = "ubuntu"
+      override.ssh.private_key_path = ENV['AWS_KEYPATH']
+    end
   
-  config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
-    apt-get install -y apache2 php libapache2-mod-php php-mcrypt php-mysql debconf-utils
-    usermod -a -G www-data ubuntu
-    echo '<?php phpinfo(); ?>' > /var/www/html/phpinfo.php
-    chown -R ubuntu:www-data /var/www
-    debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password password mytemppw'
-    debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password_again password mytemppw'
-    apt-get install -y mysql-server
-    
-  SHELL
+    web.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y apache2 php libapache2-mod-php php-mcrypt php-mysql debconf-utils
+      usermod -a -G www-data ubuntu
+      echo '<?php phpinfo(); ?>' > /var/www/html/phpinfo.php
+      chown -R ubuntu:www-data /var/www
+    SHELL
+  end
+  config.vm.define "db" do |db|
+    db.vm.provider :aws do |aws, override|
+      aws.access_key_id = ENV['AWS_KEY']
+      aws.secret_access_key = ENV['AWS_SECRET']
+      aws.keypair_name = ENV['AWS_KEYNAME']
+      aws.ami = "ami-8b92b4ee"
+      aws.region = "us-east-2"
+      aws.instance_type = "t2.micro"
+
+      override.vm.box = "dummy"
+      override.ssh.username = "ubuntu"
+      override.ssh.private_key_path = ENV['AWS_KEYPATH']
+    end
+  
+    db.vm.provision "shell", inline: <<-SHELL
+      debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password password mytemppw'
+      debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password_again password mytemppw'
+      apt-get install -y mysql-server
+    SHELL
+  end
 end
