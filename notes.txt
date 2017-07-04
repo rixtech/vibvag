@@ -1,4 +1,9 @@
+Ignore these notes. They are just my temporary scratch pad. See the README.md file.
+
+
 vagrant up --provider=aws
+
+source ./aws-credentials
 vagrant ssh 
 
 
