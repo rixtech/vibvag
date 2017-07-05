@@ -76,6 +76,7 @@ Vagrant.configure("2") do |config|
       aws.ami = "ami-8b92b4ee"
       aws.region = "us-east-2"
       aws.instance_type = "t2.micro"
+      aws.elastic_ip = "52.14.7.204"
 
       override.vm.box = "dummy"
       override.ssh.username = "ubuntu"
@@ -92,6 +93,7 @@ Vagrant.configure("2") do |config|
       aws.ami = "ami-8b92b4ee"
       aws.region = "us-east-2"
       aws.instance_type = "t2.micro"
+      aws.elastic_ip = "13.59.134.70"
 
       override.vm.box = "dummy"
       override.ssh.username = "ubuntu"
