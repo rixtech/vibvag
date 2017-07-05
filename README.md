@@ -17,10 +17,14 @@ $ vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dumm
 
 How to:
 1. Git clone this repo
+```
    $ git clone https://github.com/rixtech/vibvag
+```
    
 2. Set environment variables (or source from file)
+```
    $ source aws-credentials
+```
 
    * aws-credentials file looks like
 ```
@@ -31,11 +35,14 @@ How to:
 ```
 
 3. Change into work directory
+```
    $ cd vibvag
+```
    
 4. Provision VMs with Vagrant
+```
    $ vagrant up
- 
+```
    * Strictly speaking one should use "vagrant up --provider=aws".
      However the task specified "vagrant up" as the requirement.
    
