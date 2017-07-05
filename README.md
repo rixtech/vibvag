@@ -47,9 +47,12 @@ If spinning up in a different VPC you will need to define the Elastic IPs
 from the console or CLI and alter the IPs in the Vagrant file.
 
 I may have misinterpreted the requirements.
+
 The task outline says "Vagrant machine to spin up/down single machine
 environment".
+
 The assessor said "Vagrantfile doesn't reflect solution outlined in email
 (one server versus 2-tier architecture)"
+
 I have gone with 2 single tier VMs rather the a single VM with 2 tiers.
 
