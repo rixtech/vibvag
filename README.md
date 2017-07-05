@@ -11,8 +11,10 @@ Pre-requisites:
 - dummy vagrant box for the vagrant-aws provider plugin 
 
 Installing the plugin and dummy box:
+```
 $ vagrant plugin install vagrant-aws
 $ vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
+```
 
 
 How to:
