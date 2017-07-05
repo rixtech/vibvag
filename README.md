@@ -23,10 +23,12 @@ How to:
    $ source aws-credentials
 
    * aws-credentials file looks like
+```
      export AWS_KEY='your_amazon_access_key'
      export AWS_SECRET='your_amazon_secret_characters'
      export AWS_KEYNAME='name_of_keypair'
      export AWS_KEYPATH='pathto/somefile.pem'
+```
 
 3. Change into work directory
    $ cd vibvag
